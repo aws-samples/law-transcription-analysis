@@ -1,0 +1,76 @@
+.App {
+  margin-top: 0px;
+}
+
+.App .nav {
+  font-weight: bold;
+  text-align: end;
+}
+
+.App .logout {
+  color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  z-index: 9;
+  left: 30px;
+  top: 90px;
+}
+
+.App .logout:hover {
+  color: black;
+  background-color: rgb(239, 239, 239);
+}
+
+.App .link {
+  text-align: center;
+}
+
+.App .Login {
+  position: relative;
+  width: auto;
+  padding: 4em;
+  display: inline-block;
+  border: 3px solid #f1f1f1;
+}
+
+.App .Login h2 {
+  display: inline-block;
+}
+
+.App .Login .error {
+  font-weight: 500;
+  color: color(red);
+}
+
+.App .Login Button {
+  background-color: #ff9900;
+  color: white;
+  font-size: 16px;
+  display: inline-block;
+  padding: 14px 20px;
+  width: 100%;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+}
+
+.App .Login input {
+  width: 100%;
+}
+
+.App .preHome Button {
+  background-color: #ff9900;
+  color: white;
+  font-size: 16px;
+  display: inline-block;
+  padding: 14px 20px;
+  width: 100%;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 110px;
+}

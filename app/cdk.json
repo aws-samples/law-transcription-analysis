@@ -1,0 +1,3 @@
+{
+  "app": "npx ts-node --skip-project bin/medical-transcription-analysis.ts"
+}

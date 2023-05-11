@@ -1,0 +1,150 @@
+body {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+select.form-control,
+textarea.form-control,
+input.form-control {
+  font-size: 16px;
+}
+input[type='file'] {
+  width: 100%;
+}
+h1 {
+  display: block;
+  font-size: 2em;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
+h2 {
+  display: block;
+  font-size: 1.5em;
+  margin-top: 0.83em;
+  margin-bottom: 0.83em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
+h3 {
+  display: block;
+  font-size: 1.17em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
+h4 {
+  display: block;
+  font-size: 1em;
+  margin-top: 1.33em;
+  margin-bottom: 1.33em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
+h5 {
+  display: block;
+  font-size: 0.83em;
+  margin-top: 1.67em;
+  margin-bottom: 1.67em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
+h6 {
+  display: block;
+  font-size: 0.67em;
+  margin-top: 2.33em;
+  margin-bottom: 2.33em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
+button {
+  line-height: 18px;
+}
+
+#formSessionName {
+  margin-top: 30px;
+}
+
+#formSessionName,
+#formPatientId,
+#formHealthCareProfessionalId {
+  margin-left: -100px;
+}
+
+#formPatientName,
+#formHealthCareProfessionalName {
+  margin-top: 30px;
+}
+
+#formPatientName {
+  margin-left: -250px;
+}
+
+#formHealthCareProfessionalName {
+  margin-left: -50px;
+}
+
+#sessionName {
+  cursor: pointer;
+}
+
+#searchOptions {
+  margin-left: 0;
+  padding-left: 26px;
+}
+
+#searchCol {
+  padding-left: 70px;
+}
+
+#i2 {
+  background-color: #ff9900;
+  padding: 10px 20px;
+  line-height: 1.25rem;
+  display: inline-block;
+  margin: auto 0 auto 15px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  vertical-align: middle;
+  color: white;
+  border-radius: 0.5rem;
+  position: absolute;
+  z-index: 4;
+  bottom: 5%;
+  left: 44%;
+}
+
+#i3 {
+  background-color: #ff9900;
+  padding: 10px 20px;
+  line-height: 1.25rem;
+  display: inline-block;
+  margin: auto 0 auto 15px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  vertical-align: middle;
+  color: white;
+  border-radius: 0.5rem;
+  position: absolute;
+  z-index: 4;
+  bottom: 5%;
+  left: 20%;
+}
