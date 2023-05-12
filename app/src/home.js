@@ -296,6 +296,7 @@ export default function Home() {
           audioStream,
           (transcript) => {
             if (stopped) return;
+            console.log(transcript);
             recordData(transcript);
             addTranscriptChunk(transcript);
           },

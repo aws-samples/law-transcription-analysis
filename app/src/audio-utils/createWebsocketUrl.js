@@ -6,6 +6,7 @@ const querystring = require('querystring');
 export default function createWebsocketUrl(clientParams) {
     let endpoint = `transcribestreaming.${clientParams.region}.amazonaws.com:8443`;
     // get a preauthenticated URL that we can use to establish our WebSocket
+    console.log('WebSocket connection started');
     return createPresignedURL(
       'GET',
       endpoint,
@@ -24,7 +25,8 @@ export default function createWebsocketUrl(clientParams) {
             'media-encoding': 'pcm',
             'sample-rate': 16000,
             'type': 'CONVERSATION',
-            'show-speaker-label': true
+            'show-speaker-label': true,
+            'charset': 'utf-8'
           })
       }
     );

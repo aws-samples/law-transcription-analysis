@@ -72,15 +72,15 @@ export default function useComprehension(transcriptChunks, clientParams) {
           addResult(chunk, entities, cacheKey);
         });
 
-        inferRxNorm(chunk.text, clientParams).then((rawEntities) => {
-          const entities = addSelectedConceptCodeAndSortConcepts(rawEntities, 'RxNormConcepts');
-          addResult(chunk, entities, cacheKey);
-        });
+        // inferRxNorm(chunk.text, clientParams).then((rawEntities) => {
+        //   const entities = addSelectedConceptCodeAndSortConcepts(rawEntities, 'RxNormConcepts');
+        //   addResult(chunk, entities, cacheKey);
+        // });
 
-        inferICD10CM(chunk.text, clientParams).then((rawEntities) => {
-          const entities = addSelectedConceptCodeAndSortConcepts(rawEntities, 'ICD10CMConcepts');
-          addResult(chunk, entities, cacheKey);
-        });
+        // inferICD10CM(chunk.text, clientParams).then((rawEntities) => {
+        //   const entities = addSelectedConceptCodeAndSortConcepts(rawEntities, 'ICD10CMConcepts');
+        //   addResult(chunk, entities, cacheKey);
+        // });
       }
     }
   }, [transcriptChunks, clientParams]);

@@ -73,6 +73,7 @@ function applySegmentsToWords(text, segments) {
     });
   }
 
+  console.log(ranges)
   return ranges;
 }
 

@@ -1,14 +1,19 @@
-import { ComprehendMedical } from 'aws-sdk';
-import { Entity } from 'aws-sdk/clients/comprehendmedical';
+import { Comprehend } from 'aws-sdk';
+import { Entity } from 'aws-sdk/clients/comprehend';
 
 const detectEntities = async (
   text: string | undefined,
-  clientParams?: ComprehendMedical.Types.ClientConfiguration,
+  clientParams?: Comprehend.Types.ClientConfiguration,
 ): Promise<Entity[]> => {
-  const comprehendMedical = new ComprehendMedical(clientParams);
+  clientParams["languageCode"] = "pt";
+  const comprehend = new Comprehend(clientParams);
+  console.log(comprehend);
+  
+  console.log(clientParams);
 
   if (text === undefined || text.replace(/\s/g, '') === '') return [];
-  const resp = await comprehendMedical.detectEntitiesV2({ Text: text }).promise();
+  const resp = await comprehend.detectEntities({ Text: text, LanguageCode: "pt" }).promise();
+  console.log(resp.Entities);
   return resp.Entities;
 };
 

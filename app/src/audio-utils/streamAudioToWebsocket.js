@@ -59,9 +59,15 @@ export default function streamAudioToWebSocket(userMediaStream, onChunk, onError
     // handle messages, errors, and close events
     // handle inbound messages from Amazon Transcribe
     websocket.onmessage = function (message) {
+      console.log("websocket message: ");
+      
       //convert the binary event stream message to JSON
       let messageWrapper = eventStreamMarshaller.unmarshall(Buffer(message.data));
-      let messageBody = JSON.parse(String.fromCharCode.apply(String, messageWrapper.body));
+      
+      var string = new TextDecoder().decode(messageWrapper.body);
+      let messageBody = JSON.parse(string);
+      
+      console.log(messageBody);
       if (messageWrapper.headers[":message-type"].value === "event") {
         let results = messageBody.Transcript.Results;
 

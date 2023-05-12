@@ -179,7 +179,7 @@ export class MedicalTranscriptionAnalysisStack extends cdk.Stack {
           effect: iam.Effect.ALLOW,
         }),
         new iam.PolicyStatement({
-          actions: ['transcribe:*', 'comprehendmedical:*'],
+          actions: ['transcribe:*', 'comprehend:*'],
           resources: ['*'],
           effect: iam.Effect.ALLOW,
         }),
@@ -191,6 +191,7 @@ export class MedicalTranscriptionAnalysisStack extends cdk.Stack {
       ],
     });
 
+    //entender melhor
     const cognitoPolicyResource = cognitoPolicy.node.findChild('Resource') as iam.CfnPolicy;
     cognitoPolicyResource.cfnOptions.metadata = {
       cfn_nag: {
@@ -253,11 +254,8 @@ export class MedicalTranscriptionAnalysisStack extends cdk.Stack {
         effect: iam.Effect.ALLOW,
         resources: ['*'],
         actions: [
-          'transcribe:StartStreamTranscriptionWebSocket',
-          'transcribe:StartMedicalStreamTranscription',
-          'comprehendmedical:InferICD10CM',
-          'comprehendmedical:InferRxNorm',
-          'comprehendmedical:DetectEntitiesV2',
+          'transcribe:*',
+          'comprehend:*',
         ],
       }),
     );
