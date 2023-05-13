@@ -100,12 +100,20 @@ export default function TranscriptLine({
   const splitSegments = useMemo(() => combineSegments(sortedResults), [sortedResults]);
   const ranges = useMemo(() => applySegmentsToWords(chunk.text, splitSegments), [chunk, splitSegments]);
 
+  console.log("CHUNK:\n" + JSON.stringify(chunk, null, 4))
+
+  const chunkSpeaker = chunk.speaker.split(" ");
+
+  chunk.speaker = "Pessoa " + chunkSpeaker[1];
+  console.log("CHUNK SPEAKER:\n" + chunk.speaker)
+
   return (
     <React.Fragment>
       {enableEditing && (
         <Box mb={8}>
           {chunk.speaker && (
-            <Editable defaultValue={chunk.speaker} onSubmit={(nextSpeaker) => onSpeakerChange(nextSpeaker.trim())}>
+            
+            <Editable defaultValue={chunk.speaker} onSubmit={(nextSpeaker) => onSpeakerChange(nextSpeaker.trim())} placeholder="Pessoa">
               <EditablePreview width='100%' />
               <EditableInput />
             </Editable>

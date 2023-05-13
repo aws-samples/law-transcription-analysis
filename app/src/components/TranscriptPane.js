@@ -24,6 +24,8 @@ export default function TranscriptPane({
 }) {
   const container = useRef();
 
+  console.log("TRANSCRIPT CHUNKS: " + JSON.stringify(transcriptChunks, null, 4))
+
   // Always scroll down as far as possible when receiving new transcripts
   // This keeps the current in-progress line level with the floating microphone graphic
   useEffect(() => {

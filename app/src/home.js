@@ -774,9 +774,9 @@ export default function Home() {
           <div className={s.CreateSessionFlow}>
             {showCreateSessionForm && (
               <Form noValidate validated={sessionValidated} onSubmit={handleSessionSubmit}>
-                <h2>Save Session</h2>
+                {/* <h2>Save Session</h2>
                 <p>Save this session to review it at a later time or conduct analysis.</p>
-                <p>This data would be available across all users for review.</p>
+                <p>This data would be available across all users for review.</p> */}
                 {/* Session Name Field */}
                 <Form.Group as={Row} id='formSessionName'>
                   <OverlayTrigger
@@ -1056,11 +1056,11 @@ export default function Home() {
         )}
       </div>
 
-      {(stage === STAGE_TRANSCRIBED || stage === STAGE_SOAP_REVIEW) && (
+      {/* {(stage === STAGE_TRANSCRIBED || stage === STAGE_SOAP_REVIEW) && (
         <Button className={s.SaveButton} onClick={handleSave} id={'i' + stage}>
           Save Session
         </Button>
-      )}
+      )} */}
     </div>
   );
 }

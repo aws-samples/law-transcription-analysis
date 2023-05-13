@@ -35,15 +35,15 @@ export default function Header({
       <header className={cs(s.base, s.visible)}>
         <div className={s.left}>
           <Heading as='h2' size='md'>
-            <Link onClick={onHome}>Medical Transcription Analysis</Link>
+            <Link onClick={onHome}>Transcrição Jurídica</Link>
           </Heading>
         </div>
         <div className={s.right}>
-          {stage !== STAGE_SEARCH_EXPORT && stage !== STAGE_SEARCH && (
+          {/* {stage !== STAGE_SEARCH_EXPORT && stage !== STAGE_SEARCH && (
             <button className={s.search} onClick={onSearch}>
               Search
             </button>
-          )}
+          )} */}
           {stage === STAGE_SEARCH && (
             <button onClick={onHome}>
               <span />
@@ -62,11 +62,11 @@ export default function Header({
               Back
             </button>
           )}
-          {(stage === STAGE_TRANSCRIBED || stage === STAGE_TRANSCRIBING) && (
+          {/* {(stage === STAGE_TRANSCRIBED || stage === STAGE_TRANSCRIBING) && (
             <button disabled={stage === STAGE_TRANSCRIBING} onClick={onShowSOAPReview}>
               Review Notes
             </button>
-          )}
+          )} */}
           {stage === STAGE_SOAP_REVIEW && <button onClick={onShowExport}>Summarize</button>}
           {stage === STAGE_EXPORT && <button onClick={onReset}>Start over</button>}
           {stage !== STAGE_SEARCH_EXPORT && (

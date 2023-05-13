@@ -19,11 +19,10 @@ class FilePicker extends Component {
   render() {
     return (
       <div className={s.base}>
-        <span>Drop an audio file here</span>
-        <span>or</span>
+        <span>Solte um arquivo de áudio aqui</span>
+        <span>ou</span>
         <label>
-          Choose an audio file
-
+        Escolha um arquivo de áudio
           <input
             type="file"
             accept={[ '.mp3', '.ogg', '.wav', '.m4a', '.mp4' ]}

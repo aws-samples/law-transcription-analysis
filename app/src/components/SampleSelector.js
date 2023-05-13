@@ -13,7 +13,7 @@ function SampleButton({ sample, active, onSelect, onStop, idx }) {
   return (
     <div>
       <button className={cs(s.sampleButton, active && s.playing)} onClick={active ? onStop : click} />
-      <span>Sample {idx}</span>
+      <span>Exemplo {idx}</span>
     </div>
   );
 }
@@ -35,7 +35,7 @@ export default function SampleSelector({ samples, activeSample, onSelect, onStop
   return (
     <div className={cs(s.base, hidden && s.hidden)}>
       <button className={cs(s.dictateAudio)} onClick={startMic}>
-        Automated Note Taking
+        Notas Automatizadas
       </button>
       <FilePicker onSubmit={filesSubmitted} />
       <div className={s.presets}>
@@ -52,7 +52,7 @@ export default function SampleSelector({ samples, activeSample, onSelect, onStop
       </div>
       <div className={s.credit}>
         <small>
-          Note: Samples were synthesized using data from <a href='https://www.mtsamples.com'>MTSamples.com</a>
+          Exemplos foram retirados do site do <a href='https://www.tre-ms.jus.br/servicos-judiciais/sessoes-de-julgamento/audio-das-sessoes'>Tribunal Regional Eleitoral - MS</a>
         </small>
       </div>
     </div>
