@@ -88,7 +88,8 @@ function createStreamFromRecordedResponses(data, responder) {
 
   // Useful flag for debugging, sends all the data immediately
   // so you don't have to wait for everything to come through
-  const FAST = false;
+  //CHANGE HERE AGAIN TO FALSE
+  const FAST = true;
 
   if (FAST) {
     setTimeout(() => {

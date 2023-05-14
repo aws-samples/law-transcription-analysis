@@ -1,7 +1,7 @@
-import sample1 from './audio/sample-1.mp4';
-import sample2 from './audio/sample-2.mp4';
-import sample3 from './audio/sample-3.mp4';
-import sample4 from './audio/sample-4.mp4';
+import sample1 from './audio/audios-juridicos/sample-1.mp3';
+import sample2 from './audio/audios-juridicos/sample-2.mp3';
+import sample3 from './audio/audios-juridicos/sample-3.mp3';
+import sample4 from './audio/audios-juridicos/sample-4.mp3';
 
 import responses1 from './recorded-responses/sample-1.json';
 import responses2 from './recorded-responses/sample-2.json';
