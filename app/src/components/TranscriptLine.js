@@ -13,6 +13,8 @@ function combineSegments(results) {
     if (!markers.includes(where)) markers.push(where);
   };
 
+  
+
   results.forEach((r) => {
     addMarker(r.BeginOffset);
     addMarker(r.EndOffset);
@@ -73,7 +75,6 @@ function applySegmentsToWords(text, segments) {
     });
   }
 
-  console.log(ranges)
   return ranges;
 }
 
@@ -92,7 +93,8 @@ export default function TranscriptLine({
   handleTranscriptChange,
   onSpeakerChange,
 }) {
-  const filteredResults = useMemo(() => results.filter((r) => enabledCategories.includes(r.Category)), [
+
+  const filteredResults = useMemo(() => results.filter((r) => enabledCategories.includes(r.Type)), [
     results,
     enabledCategories,
   ]);
@@ -100,12 +102,11 @@ export default function TranscriptLine({
   const splitSegments = useMemo(() => combineSegments(sortedResults), [sortedResults]);
   const ranges = useMemo(() => applySegmentsToWords(chunk.text, splitSegments), [chunk, splitSegments]);
 
-  console.log("CHUNK:\n" + JSON.stringify(chunk, null, 4))
 
   const chunkSpeaker = chunk.speaker.split(" ");
 
   chunk.speaker = "Pessoa " + chunkSpeaker[1];
-  console.log("CHUNK SPEAKER:\n" + chunk.speaker)
+
 
   return (
     <React.Fragment>
@@ -130,7 +131,7 @@ export default function TranscriptLine({
                 {!isEditing && (
                   <p className={s.base} onClick={onEdit}>
                     {ranges.map((r, i) => (
-                      <span key={i} className={cs(r.matches.map((x) => classMap[x.Category]))}>
+                      <span key={i} className={cs(r.matches.map((x) => classMap[x.Type]))}>
                         {r.text}
                       </span>
                     ))}
@@ -147,7 +148,7 @@ export default function TranscriptLine({
           {chunk.speaker && <div>{chunk.speaker}</div>}
 
           {ranges.map((r, i) => (
-            <span key={i} className={cs(r.matches.map((x) => classMap[x.Category]))}>
+            <span key={i} className={cs(r.matches.map((x) => classMap[x.Type]))}>
               {r.text}
             </span>
           ))}

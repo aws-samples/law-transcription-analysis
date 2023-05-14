@@ -34,7 +34,11 @@ export const displayNames = {
   NAME: 'Name',
   PHONE_OR_FAX: 'Phone/Fax',
   PROFESSION: 'Profession',
-  DATE: 'Date',
+  DATE: 'Data',
+  EVENT: 'Evento',
+  LOCATION: 'Local',
+  ORGANIZATION: 'Organização',
+  PERSON: 'Pessoa'
 };
 
 export default displayNames;

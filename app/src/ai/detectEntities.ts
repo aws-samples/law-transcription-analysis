@@ -7,9 +7,6 @@ const detectEntities = async (
 ): Promise<Entity[]> => {
   clientParams["languageCode"] = "pt";
   const comprehend = new Comprehend(clientParams);
-  console.log(comprehend);
-  
-  console.log(clientParams);
 
   if (text === undefined || text.replace(/\s/g, '') === '') return [];
   const resp = await comprehend.detectEntities({ Text: text, LanguageCode: "pt" }).promise();

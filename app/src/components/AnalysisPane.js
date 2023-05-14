@@ -11,12 +11,13 @@ import highlightClasses from '../transcriptHighlights';
 import { STAGE_TRANSCRIBING, CONFIDENCE_THRESHOLD } from '../consts';
 import { getSelectedConcept } from '../utils/conceptUtils';
 
+
 const CATEGORIES = [
-  'MEDICAL_CONDITION',
-  'MEDICATION',
-  'TEST_TREATMENT_PROCEDURE',
-  'ANATOMY',
-  'PROTECTED_HEALTH_INFORMATION',
+  'DATE',
+  'EVENT',
+  'LOCATION',
+  'ORGANIZATION',
+  'PERSON',
 ];
 
 function ResultRow({ result, stage, onToggleItem, excludedItems, onDeleteClick, onSelectedConceptChange }) {
@@ -41,6 +42,7 @@ function ResultRow({ result, stage, onToggleItem, excludedItems, onDeleteClick, 
   const attrs = useMemo(() => {
     const a = [];
 
+    console.log('RESULT ANALYSIS PANE:' + JSON.stringify(result, null, 4));
     (result.Attributes || []).forEach((attr) => {
       a.push([displayNames[attr.Type], attr.Text]);
     });
@@ -49,6 +51,8 @@ function ResultRow({ result, stage, onToggleItem, excludedItems, onDeleteClick, 
 
   const conceptsPresent = result.ICD10CMConcepts || result.RxNormConcepts;
   const attributesPresent = result.Attributes && result.Attributes.length !== 0;
+  console.log('CONCEPTS PRESENT ANALYSIS PANE:' + JSON.stringify(conceptsPresent, null, 4));
+  console.log('ATTRIBUTES PRESENT ANALYSIS PANE:' + JSON.stringify(attributesPresent, null, 4));
 
   if (!conceptsPresent && !attributesPresent) {
     return (
@@ -132,7 +136,7 @@ function ResultTable({
   onResultAdd,
   onSelectedConceptChange,
 }) {
-  const filteredResults = useMemo(() => results.filter((r) => r.Category === category), [results, category]);
+  const filteredResults = useMemo(() => results.filter((r) => r.Type === category), [results, category]);
   const [inputValue, setInputValue] = useState('');
   const handleInputChange = (event) => setInputValue(event.target.value);
 

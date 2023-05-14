@@ -296,7 +296,6 @@ export default function Home() {
           audioStream,
           (transcript) => {
             if (stopped) return;
-            console.log(transcript);
             recordData(transcript);
             addTranscriptChunk(transcript);
           },
@@ -676,11 +675,10 @@ export default function Home() {
     setComprehendCustomEntities((prevEntities) => {
       const newCustomEntity = {
         id: uuidv4(),
-        Category: category,
+        Type: category,
         Text: val,
         Traits: [],
         Attributes: [],
-        Type: '',
         isCustomEntity: true,
       };
       return [[newCustomEntity], ...prevEntities];

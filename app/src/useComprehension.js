@@ -26,6 +26,7 @@ export default function useComprehension(transcriptChunks, clientParams) {
       const prev = resultMap.get(chunk);
       let next = [...prev];
 
+
       entities.forEach((e) => {
         const matching = prev.find((x) => {
           return (
@@ -35,6 +36,7 @@ export default function useComprehension(transcriptChunks, clientParams) {
             x.Category === e.Category
           );
         });
+
 
         // If there's already an entity with these exact properties, extend it.
         // Specifically, for ICD10CM and RxNorm, there's usually a pre-existing
@@ -52,6 +54,7 @@ export default function useComprehension(transcriptChunks, clientParams) {
       cache[cacheKey] = next;
 
       resultMap.set(chunk, next);
+      
       setResult(transcriptChunks.map((chunk) => resultMap.get(chunk) ?? []));
     };
 
@@ -84,6 +87,8 @@ export default function useComprehension(transcriptChunks, clientParams) {
       }
     }
   }, [transcriptChunks, clientParams]);
+
+  console.log('RESULT:' + JSON.stringify(result, null, 4));
 
   return [result, setResult];
 }
