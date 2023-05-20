@@ -1,0 +1,17 @@
+Phrase	SoundsLike	IPA	DisplayAs
+Vota			
+Eminente			
+Procedente			
+Parecer			
+Contas			
+Regional			
+Eleitoral			
+Intérprete			
+Tribunal			
+Passo			
+Pares			
+Prestadora			
+Intimada			
+Relator			
+Acompanha-Relator			
+Encerramos			

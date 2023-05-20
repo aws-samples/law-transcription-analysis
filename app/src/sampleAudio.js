@@ -1,4 +1,4 @@
-import sample1 from './audio/audios-juridicos/sample-1.mp3';
+import sample1 from './audio/audios-juridicos/sample-1-stf.mp3';
 import sample2 from './audio/audios-juridicos/sample-2.mp3';
 import sample3 from './audio/audios-juridicos/sample-3.mp3';
 import sample4 from './audio/audios-juridicos/sample-4.mp3';

@@ -369,6 +369,7 @@ export default function Home() {
   const handleSessionSubmit = (event) => {
     event.preventDefault();
     const form = event.currentTarget;
+    console.log(form)
     if (form.checkValidity() === false) {
       event.stopPropagation();
       setSessionValidated(true);
@@ -489,7 +490,7 @@ export default function Home() {
       level: 'public',
       region: process.env.REACT_APP_region,
     });
-    const transcribeAddress = `transcribe-medical-output/${sessionId}/${sessionId}-session-transcribe.txt`;
+    const transcribeAddress = ``;
     const comprehendAddress = `comprehend-medical-output/${sessionId}/${sessionId}-session-comprehend.json`;
     const soapNotesAddress = `soap-notes-medical-output/${sessionId}/${sessionId}-session-soap-notes.txt`;
 
@@ -773,9 +774,8 @@ export default function Home() {
           <div className={s.CreateSessionFlow}>
             {showCreateSessionForm && (
               <Form noValidate validated={sessionValidated} onSubmit={handleSessionSubmit}>
-                {/* <h2>Save Session</h2>
-                <p>Save this session to review it at a later time or conduct analysis.</p>
-                <p>This data would be available across all users for review.</p> */}
+                <h2>Salvar a Sessão</h2>
+                <p>Salve esta sessão para revisá-la mais tarde ou realizar análises.</p>
                 {/* Session Name Field */}
                 <Form.Group as={Row} id='formSessionName'>
                   <OverlayTrigger
@@ -787,7 +787,7 @@ export default function Home() {
                   >
                     <Form.Label column sm='4'>
                       <ToolTipIcon />
-                      Session Name
+                      Nome da Sessão
                     </Form.Label>
                   </OverlayTrigger>
 
@@ -795,17 +795,17 @@ export default function Home() {
                     <Form.Control
                       required
                       type='text'
-                      placeholder='Session Name'
+                      placeholder='Nome da Sessão'
                       name='sessionName'
                       value={sessionName}
                       onChange={(e) => setSessionName(e.target.value)}
                     />
                     <Form.Text className='text-white'>session name no color hint</Form.Text>
-                    <Form.Control.Feedback type='invalid'>Session name cannot be empty.</Form.Control.Feedback>
+                    <Form.Control.Feedback type='invalid'>O nome da sessão não pode estar vazio.</Form.Control.Feedback>
                   </Col>
                 </Form.Group>
                 {/* Patient Id Field */}
-                <Form.Group as={Row} Id='formPatientId'>
+                {/* <Form.Group as={Row} Id='formPatientId'>
                   <OverlayTrigger
                     placement='right'
                     delay={{ show: 250, hide: 400 }}
@@ -842,9 +842,9 @@ export default function Home() {
                     </Form.Text>
                     <Form.Control.Feedback type='invalid'>Patient name cannot be empty.</Form.Control.Feedback>
                   </Col>
-                </Form.Group>
+                </Form.Group> */}
                 {/* Health Care Professional Id Field */}
-                <Form.Group required as={Row} Id='formHealthCareProfessionalId'>
+                {/* <Form.Group required as={Row} Id='formHealthCareProfessionalId'>
                   <OverlayTrigger
                     placement='right'
                     delay={{ show: 250, hide: 400 }}
@@ -880,7 +880,7 @@ export default function Home() {
                     </Form.Text>
                     <Form.Control.Feedback type='invalid'>Hcp name cannot be empty.</Form.Control.Feedback>
                   </Col>
-                </Form.Group>
+                </Form.Group> */}
                 <Button
                   variant='primary'
                   onClick={() => {
@@ -893,7 +893,7 @@ export default function Home() {
                   Back
                 </Button>
                 <Button variant='primary' type='submit'>
-                  Submit
+                  Ok
                 </Button>
               </Form>
             )}
@@ -1055,11 +1055,11 @@ export default function Home() {
         )}
       </div>
 
-      {/* {(stage === STAGE_TRANSCRIBED || stage === STAGE_SOAP_REVIEW) && (
+      {(stage === STAGE_TRANSCRIBED || stage === STAGE_SOAP_REVIEW) && (
         <Button className={s.SaveButton} onClick={handleSave} id={'i' + stage}>
-          Save Session
+          Salvar Trasncrição
         </Button>
-      )} */}
+      )}
     </div>
   );
 }
