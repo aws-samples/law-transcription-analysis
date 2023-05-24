@@ -190,7 +190,7 @@ export class MedicalTranscriptionAnalysisStack extends cdk.Stack {
         }),
         new iam.PolicyStatement({
           actions: ['s3:GetObject*', 's3:List*', 's3:PutObject'],
-          resources: ['arn:aws:s3:::infrastack-mediabucketbcbb02ba-1gf67tfjzttn', `arn:aws:s3:::infrastack-mediabucketbcbb02ba-1gf67tfjzttn/*`],
+          resources: ['arn:aws:s3:::pje-ai-backend-us-east-1-163701031472', `arn:aws:s3:::pje-ai-backend-us-east-1-163701031472/*`],
           effect: iam.Effect.ALLOW,
         }),
       ],

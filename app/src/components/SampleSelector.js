@@ -35,7 +35,7 @@ export default function SampleSelector({ samples, activeSample, onSelect, onStop
   return (
     <div className={cs(s.base, hidden && s.hidden)}>
       <button className={cs(s.dictateAudio)} onClick={startMic}>
-        Notas Automatizadas
+        Transcrição
       </button>
       <FilePicker onSubmit={filesSubmitted} />
       <div className={s.presets}>

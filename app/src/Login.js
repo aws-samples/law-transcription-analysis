@@ -128,7 +128,7 @@ export default function Login() {
   return (
     <article>
       <div className='Login'>
-        <h2>Medical Transcription Analysis</h2>
+        <h2>Transcrição Jurídica PJE</h2>
         {userInputForm}
         {isLoading && <Loading />}
       </div>

@@ -486,29 +486,24 @@ export default function Home() {
     sessionId = 's-' + timeStampEnd + generate();
     setSessionId(sessionId);
     Storage.configure({
-      bucket: process.env.REACT_APP_StorageS3BucketName,
-      level: 'public',
-      region: process.env.REACT_APP_region,
+      bucket: 'pje-ai-backend-us-east-1-163701031472',
+      region: 'us-east-1',
     });
-    const transcribeAddress = ``;
-    const comprehendAddress = `comprehend-medical-output/${sessionId}/${sessionId}-session-comprehend.json`;
+    const transcribeAddress = `transcricao/${sessionId}+${sessionName}.txt`;
+    const comprehendAddress = `meta/${sessionId}+${sessionName}.json`;
     const soapNotesAddress = `soap-notes-medical-output/${sessionId}/${sessionId}-session-soap-notes.txt`;
 
     var dict = {
       Session: {
         sessionId: sessionId,
-        patientId: patientId,
-        healthCareProfessionalId: healthCareProfessionalId,
         timeStampStart: timeStampStart,
         timeStampEnd: timeStampEnd,
       },
-      Medication: [],
-      RxNorm: [],
-      MedicationRxNorm: [],
-      MedicalCondition: [],
-      ICD10CMConcept: [],
-      MedicalConditionICD10CMConcept: [],
-      TestTreatmentProcedures: [],
+      Data: [],
+      Evento: [],
+      Local: [],
+      Organizacao: [],
+      Pessoa: [],
     };
 
     var transcripts_texts = '';
@@ -520,69 +515,58 @@ export default function Home() {
     Storage.put(transcribeAddress, transcripts_texts);
 
     const allResults = [].concat(...comprehendResults);
-    const filteredResultsM = allResults.filter((r) => r.Category === 'MEDICATION');
-    filteredResultsM.forEach((r, i) => {
-      const medicationId = 'm' + sessionId + i;
-      dict.Medication.push({
-        medicationId: medicationId,
-        sessionId: sessionId,
-        medicationText: r.Text,
-        medicationType: r.Type,
-      });
-      if (r.RxNormConcepts)
-        r.RxNormConcepts.forEach((r2, i2) => {
-          dict.RxNorm.push({ code: r2.Code, description: r2.Description });
-          dict.MedicationRxNorm.push({ medicationId: medicationId, code: r2.Code });
-        });
+    const filteredResultsD = allResults.filter((r) => r.Type === 'DATE');
+    filteredResultsD.forEach((r) => {
+      dict.Data.push(r.Text);
     });
 
-    const filteredResultsMC = allResults.filter((r) => r.Category === 'MEDICAL_CONDITION');
-    filteredResultsMC.forEach((r, i) => {
-      const medicalConditionId = 'mc' + sessionId + i;
-      dict.MedicalCondition.push({
-        medicalConditionId: medicalConditionId,
-        sessionId: sessionId,
-        medicalConditionText: r.Text,
-      });
-      if (r.ICD10CMConcepts)
-        r.ICD10CMConcepts.forEach((r2, i2) => {
-          dict.ICD10CMConcept.push({ code: r2.Code, description: r2.Description });
-          dict.MedicalConditionICD10CMConcept.push({ medicalConditionId: medicalConditionId, code: r2.Code });
-        });
+    const filteredResultsE = allResults.filter((r) => r.Type === 'EVENT');
+    filteredResultsE.forEach((r) => {
+      dict.Evento.push(r.Text);
     });
 
-    const filteredResultsTTP = allResults.filter((r) => r.Category === 'TEST_TREATMENT_PROCEDURE');
-    filteredResultsTTP.forEach((r, i) => {
-      const testTreatmentProcedureId = 't' + sessionId + i;
-      dict.TestTreatmentProcedures.push({
-        testTreatmentProcedureId: testTreatmentProcedureId,
-        sessionId: sessionId,
-        testTreatmentProcedureText: r.Text,
-        testTreatmentProcedureType: r.Type,
-      });
+    const filteredResultsL = allResults.filter((r) => r.Type === 'LOCATION');
+    filteredResultsL.forEach((r) => {
+      dict.Local.push(r.Text);
     });
-    Storage.put(comprehendAddress, JSON.stringify(dict));
 
-    Storage.put(soapNotesAddress, soapSummary);
+    const filteredResultsO = allResults.filter((r) => r.Type === 'ORGANIZATION');
+    filteredResultsO.forEach((r) => {
+      dict.Organizacao.push(r.Text);
+    });
 
-    const data = {
-      PatientId: patientId,
-      HealthCareProfessionalId: healthCareProfessionalId,
-      SessionName: sessionName,
-      SessionId: sessionId,
-      TimeStampStart: timeStampStart,
-      TimeStampEnd: timeStampEnd,
-      TranscribeS3Path: transcribeAddress,
-      ComprehendS3Path: comprehendAddress,
-      SOAPNotesS3Path: soapNotesAddress,
-    };
+    const filteredResultsP = allResults.filter((r) => r.Type === 'PERSON');
+    filteredResultsP.forEach((r) => {
+      dict.Pessoa.push(r.Text);
+    });
+
     Storage.configure({
-      bucket: process.env.REACT_APP_REACT_APP_WebAppBucketName,
-      level: 'public',
+      bucket: "pje-ai-backend-us-east-1-163701031472",
       region: process.env.REACT_APP_region,
     });
 
-    createSession(data);
+    Storage.put(comprehendAddress, JSON.stringify(dict));
+
+    // Storage.put(soapNotesAddress, soapSummary);
+
+    // const data = {
+    //   PatientId: patientId,
+    //   HealthCareProfessionalId: healthCareProfessionalId,
+    //   SessionName: sessionName,
+    //   SessionId: sessionId,
+    //   TimeStampStart: timeStampStart,
+    //   TimeStampEnd: timeStampEnd,
+    //   TranscribeS3Path: transcribeAddress,
+    //   ComprehendS3Path: comprehendAddress,
+    //   SOAPNotesS3Path: soapNotesAddress,
+    // };
+    // Storage.configure({
+    //   bucket: process.env.REACT_APP_REACT_APP_WebAppBucketName,
+    //   level: 'public',
+    //   region: process.env.REACT_APP_region,
+    // });
+
+    // createSession(data);
 
     return sessionId;
   };
@@ -1038,16 +1022,16 @@ export default function Home() {
 
             {showCreateSessionSuccess && (
               <div>
-                <h2>Create Session Success!</h2>
-                <p>The Session Id is {sid}.</p>
-                <p>Remember to save it :)</p>
+                <h2>Sessão Salva com Sucesso!</h2>
+                {/* <p>The Session Id is {sid}.</p>
+                <p>Remember to save it :)</p> */}
                 <button
                   onClick={() => {
                     toggleCreateSessionSuccess();
                     toggleShowForm();
                   }}
                 >
-                  Close
+                  OK
                 </button>
               </div>
             )}

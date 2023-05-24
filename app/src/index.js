@@ -21,7 +21,6 @@ Amplify.configure({
   Storage: {
     AWSS3: {
       bucket: process.env.REACT_APP_WebAppBucketName,
-      level: 'public',
       region: region,
     },
   },

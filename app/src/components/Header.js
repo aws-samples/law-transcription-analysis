@@ -35,7 +35,7 @@ export default function Header({
       <header className={cs(s.base, s.visible)}>
         <div className={s.left}>
           <Heading as='h2' size='md'>
-            <Link onClick={onHome}>Transcrição Jurídica</Link>
+            <Link onClick={onHome}>Transcrição Jurídica PJE</Link>
           </Heading>
         </div>
         <div className={s.right}>
@@ -67,13 +67,13 @@ export default function Header({
               Review Notes
             </button>
           )} */}
-          {stage === STAGE_SOAP_REVIEW && <button onClick={onShowExport}>Summarize</button>}
+          {/* {stage === STAGE_SOAP_REVIEW && <button onClick={onShowExport}>Summarize</button>}
           {stage === STAGE_EXPORT && <button onClick={onReset}>Start over</button>}
           {stage !== STAGE_SEARCH_EXPORT && (
             <Link onClick={handleLogout} m={4}>
               Logout
             </Link>
-          )}
+          )} */}
         </div>
       </header>
     </>

@@ -19,16 +19,16 @@ class FilePicker extends Component {
   render() {
     return (
       <div className={s.base}>
-        <span>Solte um arquivo de áudio aqui</span>
-        <span>ou</span>
-        <label>
+        {/* <span>Solte um arquivo de áudio aqui</span>
+        <span>ou</span> */}
+        {/* <label>
         Escolha um arquivo de áudio
           <input
             type="file"
             accept={[ '.mp3', '.ogg', '.wav', '.m4a', '.mp4' ]}
             onChange={this.onFilePicked}
           />
-        </label>
+        </label> */}
         <Dropzone
           message={"Drop files here..."}
           onDrop={this.onSubmit}
