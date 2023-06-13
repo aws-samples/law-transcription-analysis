@@ -15,3 +15,6 @@ Intimada
 Relator			
 Acompanha-Relator			
 Encerramos			
+Ministro
+Profira
+Voto

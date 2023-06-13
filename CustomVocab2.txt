@@ -1,5 +1,5 @@
 Phrase	SoundsLike	IPA	DisplayAs
-Augusto-Aras            
+Augusto-Aras                        
 Passo-a-Palavra
 Ministro
 Profira-Seu-Voto
@@ -12,7 +12,7 @@ Dito-Em-Relatório
 Artigo-Nove-Meia-Meia-Inciso-Quinto
 Acórdão
 Autos-De-Extradição-Quinze-Sessenta
-Ementa  i-men-ta
+Ementai-men-ta
 Presente
 Nanci-Mestre
 Jaime-Enrique-Saade-Cormane

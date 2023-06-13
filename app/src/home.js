@@ -500,7 +500,7 @@ export default function Home() {
         timeStampEnd: timeStampEnd,
       },
       Data: [],
-      Evento: [],
+      Lei: [],
       Local: [],
       Organizacao: [],
       Pessoa: [],
@@ -522,7 +522,7 @@ export default function Home() {
 
     const filteredResultsE = allResults.filter((r) => r.Type === 'EVENT');
     filteredResultsE.forEach((r) => {
-      dict.Evento.push(r.Text);
+      dict.Lei.push(r.Text);
     });
 
     const filteredResultsL = allResults.filter((r) => r.Type === 'LOCATION');
@@ -1041,7 +1041,7 @@ export default function Home() {
 
       {(stage === STAGE_TRANSCRIBED || stage === STAGE_SOAP_REVIEW) && (
         <Button className={s.SaveButton} onClick={handleSave} id={'i' + stage}>
-          Salvar Trasncrição
+          Salvar Transcrição
         </Button>
       )}
     </div>

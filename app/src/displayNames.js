@@ -35,7 +35,7 @@ export const displayNames = {
   PHONE_OR_FAX: 'Phone/Fax',
   PROFESSION: 'Profession',
   DATE: 'Data',
-  EVENT: 'Evento',
+  EVENT: 'Lei',
   LOCATION: 'Local',
   ORGANIZATION: 'Organização',
   PERSON: 'Pessoa'
