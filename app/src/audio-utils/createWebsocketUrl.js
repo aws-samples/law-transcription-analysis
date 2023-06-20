@@ -26,8 +26,7 @@ export default function createWebsocketUrl(clientParams) {
             'sample-rate': 16000,
             'type': 'CONVERSATION',
             'show-speaker-label': true,
-            'charset': 'utf-8',
-            'vocabulary-name': 'VocabJuridico'
+            'charset': 'utf-8'
           })
       }
     );

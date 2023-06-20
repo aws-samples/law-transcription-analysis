@@ -15,5 +15,6 @@ async function getTranscribeCredentials() {
 }
 
 export default function getCredentials() {
+    console.log(getTranscribeCredentials)
     return getTranscribeCredentials();
 }

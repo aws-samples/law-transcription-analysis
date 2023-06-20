@@ -71,7 +71,7 @@ export class MedicalTranscriptionAnalysisStack extends cdk.Stack {
     });
 
     const oai = new OriginAccessIdentity(this, 'mta-oai', {
-      comment: 'Origin Access Identity for Medical Transcription Analysis web stack bucket cloudfront distribution',
+      comment: 'Origin Access Identity for Transcription Analysis web stack bucket cloudfront distribution',
     });
 
     const distribution = new CloudFrontWebDistribution(this, 'mta-cfront', {
@@ -128,7 +128,7 @@ export class MedicalTranscriptionAnalysisStack extends cdk.Stack {
       },
       userInvitation: {
         emailSubject: 'Your MTA login',
-        emailBody: `<p>You are invited to try the Medical Transcription Analysis Solution. Your credentials are:</p> \
+        emailBody: `<p>You are invited to try the Transcription Analysis Solution. Your credentials are:</p> \
                 <p> \
                 Username: <strong>{username}</strong><br /> \
                 Password: <strong>{####}</strong> \
@@ -196,7 +196,6 @@ export class MedicalTranscriptionAnalysisStack extends cdk.Stack {
       ],
     });
 
-    //entender melhor
     const cognitoPolicyResource = cognitoPolicy.node.findChild('Resource') as iam.CfnPolicy;
     cognitoPolicyResource.cfnOptions.metadata = {
       cfn_nag: {
@@ -234,6 +233,11 @@ export class MedicalTranscriptionAnalysisStack extends cdk.Stack {
       },
     });
 
+
+
+
+
+
     const yarnBotoLoc = lambda.Code.fromAsset('lambda/boto3');
 
     const boto3Layer = new lambda.LayerVersion(this, this.resourceName('Boto3'), {
@@ -241,6 +245,9 @@ export class MedicalTranscriptionAnalysisStack extends cdk.Stack {
       compatibleRuntimes: [lambda.Runtime.PYTHON_3_8],
       license: 'Apache-2.0',
     });
+
+
+
 
     const transcriberRole = new iam.Role(this, this.resourceName('TranscriberRole'), {
       assumedBy: new iam.ServicePrincipal('iam.amazonaws.com'),
@@ -265,79 +272,83 @@ export class MedicalTranscriptionAnalysisStack extends cdk.Stack {
       }),
     );
 
+
+
+
+
     // Dynamodb
-    const TableSessions = new ddb.Table(this, 'TableSessions', {
-      tableName: 'Sessions',
-      removalPolicy: RemovalPolicy.DESTROY,
-      partitionKey: { name: 'PatientId', type: ddb.AttributeType.STRING },
-      sortKey: { name: 'SessionId', type: ddb.AttributeType.STRING },
-      serverSideEncryption: true,
-    });
+    // const TableSessions = new ddb.Table(this, 'TableSessions', {
+    //   tableName: 'Sessions',
+    //   removalPolicy: RemovalPolicy.DESTROY,
+    //   partitionKey: { name: 'PatientId', type: ddb.AttributeType.STRING },
+    //   sortKey: { name: 'SessionId', type: ddb.AttributeType.STRING },
+    //   serverSideEncryption: true,
+    // });
 
-    TableSessions.addGlobalSecondaryIndex({
-      indexName: 'hcpIndex',
-      partitionKey: { name: 'HealthCareProfessionalId', type: ddb.AttributeType.STRING },
-      sortKey: { name: 'SessionId', type: ddb.AttributeType.STRING },
-    });
+    // TableSessions.addGlobalSecondaryIndex({
+    //   indexName: 'hcpIndex',
+    //   partitionKey: { name: 'HealthCareProfessionalId', type: ddb.AttributeType.STRING },
+    //   sortKey: { name: 'SessionId', type: ddb.AttributeType.STRING },
+    // });
 
-    const TablePatients = new ddb.Table(this, 'TablePatients', {
-      tableName: 'Patients',
-      removalPolicy: RemovalPolicy.DESTROY,
-      partitionKey: { name: 'PatientId', type: ddb.AttributeType.STRING },
-      serverSideEncryption: true,
-    });
+    // const TablePatients = new ddb.Table(this, 'TablePatients', {
+    //   tableName: 'Patients',
+    //   removalPolicy: RemovalPolicy.DESTROY,
+    //   partitionKey: { name: 'PatientId', type: ddb.AttributeType.STRING },
+    //   serverSideEncryption: true,
+    // });
 
-    const TableHealthCareProfessionals = new ddb.Table(this, 'TableHealthCareProfessionals', {
-      tableName: 'HealthCareProfessionals',
-      removalPolicy: RemovalPolicy.DESTROY,
-      partitionKey: { name: 'HealthCareProfessionalId', type: ddb.AttributeType.STRING },
-      serverSideEncryption: true,
-    });
+    // const TableHealthCareProfessionals = new ddb.Table(this, 'TableHealthCareProfessionals', {
+    //   tableName: 'HealthCareProfessionals',
+    //   removalPolicy: RemovalPolicy.DESTROY,
+    //   partitionKey: { name: 'HealthCareProfessionalId', type: ddb.AttributeType.STRING },
+    //   serverSideEncryption: true,
+    // });
 
-    // Lambda
-    /* MTAApiProcessor */
-    const onEventAthenaLambda = new lambda.Function(this, this.resourceName('MTAOnEventAthenaLambda'), {
-      runtime: lambda.Runtime.PYTHON_3_8,
-      code: lambda.Code.asset('lambda/custom_resource_athena/'),
-      handler: 'lambda_function.lambda_handler',
-      timeout: cdk.Duration.seconds(60),
-      environment: {
-        BUCKET_NAME: storageS3Bucket.bucketName,
-      },
-    });
+    // // Lambda
+    // /* MTAApiProcessor */
+    // const onEventAthenaLambda = new lambda.Function(this, this.resourceName('MTAOnEventAthenaLambda'), {
+    //   runtime: lambda.Runtime.PYTHON_3_8,
+    //   code: lambda.Code.asset('lambda/custom_resource_athena/'),
+    //   handler: 'lambda_function.lambda_handler',
+    //   timeout: cdk.Duration.seconds(60),
+    //   environment: {
+    //     BUCKET_NAME: storageS3Bucket.bucketName,
+    //   },
+    // });
 
-    onEventAthenaLambda.addLayers(boto3Layer);
+    // onEventAthenaLambda.addLayers(boto3Layer);
 
-    onEventAthenaLambda.addToRolePolicy(
-      new iam.PolicyStatement({
-        effect: iam.Effect.ALLOW,
-        actions: [
-          'athena:StartQueryExecution',
-          'athena:CreateNamedQuery',
-          'athena:DeleteNamedQuery',
-          'athena:GetQueryResults',
-          'athena:CreateWorkGroup',
-          'athena:DeleteWorkGroup',
-        ],
-        resources: ['*'],
-      }),
-    );
+    // onEventAthenaLambda.addToRolePolicy(
+    //   new iam.PolicyStatement({
+    //     effect: iam.Effect.ALLOW,
+    //     actions: [
+    //       'athena:StartQueryExecution',
+    //       'athena:CreateNamedQuery',
+    //       'athena:DeleteNamedQuery',
+    //       'athena:GetQueryResults',
+    //       'athena:CreateWorkGroup',
+    //       'athena:DeleteWorkGroup',
+    //     ],
+    //     resources: ['*'],
+    //   }),
+    // );
 
-    onEventAthenaLambda.addToRolePolicy(
-      new iam.PolicyStatement({
-        effect: iam.Effect.ALLOW,
-        actions: ['s3:PutObject', 's3:GetObject', 's3:AbortMultipartUpload'],
-        resources: ['*'],
-      }),
-    );
+    // onEventAthenaLambda.addToRolePolicy(
+    //   new iam.PolicyStatement({
+    //     effect: iam.Effect.ALLOW,
+    //     actions: ['s3:PutObject', 's3:GetObject', 's3:AbortMultipartUpload'],
+    //     resources: ['*'],
+    //   }),
+    // );
 
-    onEventAthenaLambda.addToRolePolicy(
-      new iam.PolicyStatement({
-        effect: iam.Effect.ALLOW,
-        actions: ['glue:*'],
-        resources: ['*'],
-      }),
-    );
+    // onEventAthenaLambda.addToRolePolicy(
+    //   new iam.PolicyStatement({
+    //     effect: iam.Effect.ALLOW,
+    //     actions: ['glue:*'],
+    //     resources: ['*'],
+    //   }),
+    // );
 
     const apiProcessor = new lambda.Function(this, this.resourceName('MTAApiProcessor'), {
       runtime: lambda.Runtime.PYTHON_3_8,
@@ -350,11 +361,11 @@ export class MedicalTranscriptionAnalysisStack extends cdk.Stack {
       },
     });
 
-    TableHealthCareProfessionals.grantReadWriteData(apiProcessor);
-    TablePatients.grantReadWriteData(apiProcessor);
-    TableSessions.grantReadWriteData(apiProcessor);
-    storageS3Bucket.grantReadWrite(apiProcessor);
-    storageS3Bucket.grantReadWrite(onEventAthenaLambda);
+    // TableHealthCareProfessionals.grantReadWriteData(apiProcessor);
+    // TablePatients.grantReadWriteData(apiProcessor);
+    // TableSessions.grantReadWriteData(apiProcessor);
+    // storageS3Bucket.grantReadWrite(apiProcessor);
+    // storageS3Bucket.grantReadWrite(onEventAthenaLambda);
 
     apiProcessor.addToRolePolicy(
       new iam.PolicyStatement({
@@ -448,47 +459,47 @@ export class MedicalTranscriptionAnalysisStack extends cdk.Stack {
     const getCredentials = api.root.addResource('getCredentials');
     addCorsOptionsAndMethods(getCredentials, ['GET', 'POST']);
 
-    const createSessionResource = api.root.addResource('createSession');
-    addCorsOptionsAndMethods(createSessionResource, ['POST']);
+    // const createSessionResource = api.root.addResource('createSession');
+    // addCorsOptionsAndMethods(createSessionResource, ['POST']);
 
-    const listSessionsResource = api.root.addResource('listSessions');
-    addCorsOptionsAndMethods(listSessionsResource, ['GET']);
+    // const listSessionsResource = api.root.addResource('listSessions');
+    // addCorsOptionsAndMethods(listSessionsResource, ['GET']);
 
-    const listPatientsResource = api.root.addResource('listPatients');
-    addCorsOptionsAndMethods(listPatientsResource, ['GET']);
+    // const listPatientsResource = api.root.addResource('listPatients');
+    // addCorsOptionsAndMethods(listPatientsResource, ['GET']);
 
-    const createPatientResource = api.root.addResource('createPatient');
-    addCorsOptionsAndMethods(createPatientResource, ['POST']);
+    // const createPatientResource = api.root.addResource('createPatient');
+    // addCorsOptionsAndMethods(createPatientResource, ['POST']);
 
-    const listHealthCareProfessionalsResource = api.root.addResource('listHealthCareProfessionals');
-    addCorsOptionsAndMethods(listHealthCareProfessionalsResource, ['GET']);
+    // const listHealthCareProfessionalsResource = api.root.addResource('listHealthCareProfessionals');
+    // addCorsOptionsAndMethods(listHealthCareProfessionalsResource, ['GET']);
 
-    const createHealthCareProfessionalResource = api.root.addResource('createHealthCareProfessional');
-    addCorsOptionsAndMethods(createHealthCareProfessionalResource, ['POST']);
+    // const createHealthCareProfessionalResource = api.root.addResource('createHealthCareProfessional');
+    // addCorsOptionsAndMethods(createHealthCareProfessionalResource, ['POST']);
 
-    const getTranscriptionComprehendResource = api.root.addResource('getTranscriptionComprehend');
-    addCorsOptionsAndMethods(getTranscriptionComprehendResource, ['GET']);
+    // const getTranscriptionComprehendResource = api.root.addResource('getTranscriptionComprehend');
+    // addCorsOptionsAndMethods(getTranscriptionComprehendResource, ['GET']);
 
-    const getTranscriptionTranslationResource = api.root.addResource('getTranscriptionTranslation');
-    addCorsOptionsAndMethods(getTranscriptionTranslationResource, ['GET']);
+    // const getTranscriptionTranslationResource = api.root.addResource('getTranscriptionTranslation');
+    // addCorsOptionsAndMethods(getTranscriptionTranslationResource, ['GET']);
 
-    cognitoPolicy.addStatements(
-      new iam.PolicyStatement({
-        actions: ['execute-api:Invoke'],
-        resources: [api.arnForExecuteApi()],
-        effect: iam.Effect.ALLOW,
-      }),
-    );
+    // cognitoPolicy.addStatements(
+    //   new iam.PolicyStatement({
+    //     actions: ['execute-api:Invoke'],
+    //     resources: [api.arnForExecuteApi()],
+    //     effect: iam.Effect.ALLOW,
+    //   }),
+    // );
 
-    // Custom Resource
+    // // Custom Resource
 
-    const athenaProvider = new cr.Provider(this, this.resourceName('athenaProvider'), {
-      onEventHandler: onEventAthenaLambda,
+    // const athenaProvider = new cr.Provider(this, this.resourceName('athenaProvider'), {
+    //   onEventHandler: onEventAthenaLambda,
 
-    });
+    // });
 
-    const athenaCustomResource = new CustomResource(this, this.resourceName('athenaCustomResource'), {
-      serviceToken: athenaProvider.serviceToken,
-    });
+    // const athenaCustomResource = new CustomResource(this, this.resourceName('athenaCustomResource'), {
+    //   serviceToken: athenaProvider.serviceToken,
+    // });
   }
 }
