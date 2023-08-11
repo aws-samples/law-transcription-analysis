@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/static/css/main.7cbfa6bc.css",
+    "main.js": "/static/js/main.7534e0c3.js",
+    "static/media/sample-2.mp3": "/static/media/sample-2.30f9c726d00b29d9553c.mp3",
+    "static/media/sample-1-stf.mp3": "/static/media/sample-1-stf.934f1a9b4e0226272bf7.mp3",
+    "static/media/sample-4.mp3": "/static/media/sample-4.3bcd85b6efbdb72675df.mp3",
+    "static/media/sample-3.mp3": "/static/media/sample-3.ae3f037002cad645a323.mp3",
+    "static/media/logo_acme_01@2x.png": "/static/media/logo_acme_01@2x.795f28a5572169f60cc1.png",
+    "static/media/icon_hide_01.svg": "/static/media/icon_hide_01.5186ff294d6371e3e85b.svg",
+    "static/media/icon_csv_01.svg": "/static/media/icon_csv_01.680b45e6a69686ba89f2.svg",
+    "static/media/icon_pdf_01.svg": "/static/media/icon_pdf_01.08f171e3494110694a7a.svg",
+    "static/media/icon_ehr_01.svg": "/static/media/icon_ehr_01.acdfe382084f6500e244.svg",
+    "static/media/icon_toggles_01.svg": "/static/media/icon_toggles_01.c1145b327ea5a2d49a53.svg",
+    "static/media/icon_stop_01.svg": "/static/media/icon_stop_01.c32717fc47d16dab5e8a.svg",
+    "static/media/icon_show_01.svg": "/static/media/icon_show_01.ff1acc02097bc7ec925b.svg",
+    "static/media/icon_close_01.svg": "/static/media/icon_close_01.ed7da5e31cb2176536e3.svg",
+    "static/media/icon_play_big_01.svg": "/static/media/icon_play_big_01.41c3832d49dfa53c1bfd.svg",
+    "index.html": "/index.html",
+    "main.7cbfa6bc.css.map": "/static/css/main.7cbfa6bc.css.map",
+    "main.7534e0c3.js.map": "/static/js/main.7534e0c3.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7cbfa6bc.css",
+    "static/js/main.7534e0c3.js"
+  ]
+}

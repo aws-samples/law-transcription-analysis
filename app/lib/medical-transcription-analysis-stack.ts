@@ -56,7 +56,8 @@ export class MedicalTranscriptionAnalysisStack extends cdk.Stack {
       websiteIndexDocument: 'index.html',
       cors: [corsRule],
       // blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL, change back
-      encryption: BucketEncryption.S3_MANAGED,
+      encryption: s3.BucketEncryption.S3_MANAGED,
+      enforceSSL: true,
       removalPolicy: RemovalPolicy.DESTROY,
     });
 
@@ -66,7 +67,8 @@ export class MedicalTranscriptionAnalysisStack extends cdk.Stack {
       websiteIndexDocument: 'index.html',
       cors: [corsRule],
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
-      encryption: BucketEncryption.S3_MANAGED,
+      encryption: s3.BucketEncryption.S3_MANAGED,
+      enforceSSL: true,
       removalPolicy: RemovalPolicy.DESTROY,
     });
 
@@ -104,7 +106,7 @@ export class MedicalTranscriptionAnalysisStack extends cdk.Stack {
       principals: [new CanonicalUserPrincipal(oai.cloudFrontOriginAccessIdentityS3CanonicalUserId)],
     });
 
-    webAppS3Bucket.addToResourcePolicy(cloudfrontPolicyStatement);
+    // webAppS3Bucket.addToResourcePolicy(cloudfrontPolicyStatement);
 
     const cloudfrontStorageBucketPolicyStatement = new iam.PolicyStatement({
       actions: ['s3:GetBucket*', 's3:GetObject*', 's3:List*', 's3:PutObject'],
@@ -188,6 +190,7 @@ export class MedicalTranscriptionAnalysisStack extends cdk.Stack {
           resources: [storageS3Bucket.bucketArn, `${storageS3Bucket.bucketArn}/*`],
           effect: iam.Effect.ALLOW,
         }),
+        //mudar talvez tenha que olhar a demo original
         new iam.PolicyStatement({
           actions: ['s3:GetObject*', 's3:List*', 's3:PutObject'],
           resources: ['arn:aws:s3:::pje-ai-backend-us-east-1-163701031472', `arn:aws:s3:::pje-ai-backend-us-east-1-163701031472/*`],
@@ -374,6 +377,7 @@ export class MedicalTranscriptionAnalysisStack extends cdk.Stack {
         resources: [transcriberRole.roleArn],
       }),
     );
+    //talvez deletar
     apiProcessor.addToRolePolicy(
       new iam.PolicyStatement({
         actions: ['translate:TranslateText'],

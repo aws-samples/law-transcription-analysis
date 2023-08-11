@@ -339,6 +339,7 @@ export default function Home() {
     history.push('/home');
   }, [history, setComprehendResults]);
 
+  // Precisa ver - dynamo
   const toSearch = useCallback(() => {
     setTranscripts(false);
     setPartialTranscript('');
@@ -360,12 +361,15 @@ export default function Home() {
     });
   }, []);
 
+
+  //IMPORTANTE
   const handleSave = (e) => {
     e.preventDefault();
     setShowCreateSessionForm(true);
     toggleShowForm();
   };
 
+  //talvez apagar  
   const handleSessionSubmit = (event) => {
     event.preventDefault();
     const form = event.currentTarget;
@@ -486,7 +490,7 @@ export default function Home() {
     sessionId = 's-' + timeStampEnd + generate();
     setSessionId(sessionId);
     Storage.configure({
-      bucket: 'pje-ai-backend-us-east-1-163701031472',
+      bucket: 'pje-ai-backend-us-east-1-163701031472', //colocar bucket de storage
       region: 'us-east-1',
     });
     const transcribeAddress = `transcricao/${sessionId}+${sessionName}.txt`;
@@ -500,9 +504,9 @@ export default function Home() {
         timeStampEnd: timeStampEnd,
       },
       Data: [],
-      Lei: [],
+      Lei: [], //ta errado
       Local: [],
-      Organizacao: [],
+      Organizacao: [], 
       Pessoa: [],
     };
 
@@ -541,7 +545,7 @@ export default function Home() {
     });
 
     Storage.configure({
-      bucket: "pje-ai-backend-us-east-1-163701031472",
+      bucket: "pje-ai-backend-us-east-1-163701031472", //ta errado
       region: process.env.REACT_APP_region,
     });
 
