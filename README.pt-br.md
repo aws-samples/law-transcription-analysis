@@ -1,6 +1,6 @@
 
 ## Law Transcription Analysis
-[![en](https://img.shields.io/badge/lang-pt--br-green.svg)](https://github.com/dmtr33/law-transcription-demo/blob/main/README.pt-br.md)
+[![en](https://img.shields.io/badge/lang-en--us-blue.svg)](https://github.com/dmtr33/law-transcription-demo/blob/main/README.md)
 
 O Law Transcription Analysis (LTA) é uma solução simples que aproveita os poderes do Amazon Transcribe e do Amazon Comprehend para fornecer transcrição e compreensão de leis. A solução abre um WebSocket entre o cliente (navegador) e o Amazon Transcribe. Esse WebSocket é usado para enviar o áudio do cliente para o Amazon Transcribe e recuperar a transcrição em tempo real, que é então renderizada na interface do usuário. Os resultados da transcrição são enviados ao Amazon Comprehend, que retorna uma análise da transcrição.
 
