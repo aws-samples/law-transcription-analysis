@@ -51,3 +51,12 @@ Essa implementação cria 2 buckets S3 que terão de ser excluídos manualmente 
 
 ### Medical Transcription Analysis Demo
 Essa solução foi criada com base em componentes do [medical-transcription-analysis](https://github.com/aws-samples/medical-transcription-analysis)
+
+## Security
+
+See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
+
+## License
+
+This library is licensed under the MIT-0 License. See the LICENSE file.
+
