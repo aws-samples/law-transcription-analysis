@@ -51,3 +51,12 @@ This deployment creates 2 S3 buckets that will have to be deleted manually when 
 ### Medical Transcription Analysis Demo
 This solution was built over components from the [medical-transcription-analysis](https://github.com/aws-samples/medical-transcription-analysis)
 
+## Security
+
+See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
+
+## License
+
+This library is licensed under the MIT-0 License. See the LICENSE file.
+
+
