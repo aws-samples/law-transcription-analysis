@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
 ## Law Transcription Analysis
 [![en](https://img.shields.io/badge/lang-pt--br-green.svg)](https://github.com/dmtr33/law-transcription-demo/blob/main/README.pt-br.md)
 
@@ -52,22 +50,4 @@ This deployment creates 2 S3 buckets that will have to be deleted manually when 
 
 ### Medical Transcription Analysis Demo
 This solution was built over components from the [medical-transcription-analysis](https://github.com/aws-samples/medical-transcription-analysis)
-=======
-## My Project
 
-TODO: Fill this README out!
-
-Be sure to:
-
-* Change the title in this README
-* Edit your repository description on GitHub
-
-## Security
-
-See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
-
-## License
-
-This library is licensed under the MIT-0 License. See the LICENSE file.
-
->>>>>>> 7e0039fb65196041c6bd4b0ba2fafc55d62dba0e
