@@ -1,5 +1,5 @@
 ## Law Transcription Analysis
-[![en](https://img.shields.io/badge/lang-pt--br-green.svg)](https://github.com/dmtr33/law-transcription-demo/blob/main/README.pt-br.md)
+[![en](https://img.shields.io/badge/lang-pt--br-green.svg)](https://github.com/aws-samples/law-transcription-analysis/blob/main/README.pt-br.md)
 
 Law Transcription Analysis (LTA) is a simple solution that leverages the powers of Amazon Transcribe and Amazon Comprehend to provide law transcription and comprehension. The solution opens a WebSocket between the client (browser) and Amazon Transcribe. This WebSocket is used to send the audio from the client to Amazon Transcribe and retrieve real time transcription which is then rendered on the UI. The transcribed results are then sent to Amazon Comprehend which returns an analysis of the transcription.
 
@@ -50,4 +50,13 @@ This deployment creates 2 S3 buckets that will have to be deleted manually when 
 
 ### Medical Transcription Analysis Demo
 This solution was built over components from the [medical-transcription-analysis](https://github.com/aws-samples/medical-transcription-analysis)
+
+## Security
+
+See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
+
+## License
+
+This library is licensed under the MIT-0 License. See the LICENSE file.
+
 
