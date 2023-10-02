@@ -13,7 +13,7 @@ You can use an AWS Cloud9 enviornment or EC2 instance (recommended: t3.large or 
 * yarn (You can install yarn by following instructions [here](https://classic.yarnpkg.com/en/docs/install/))
 * node 10+ (You can install nodejs by following the instructions [here](https://nodejs.org/en/download/))
 * aws cli (You can install aws cli by following the instructions [here](https://docs.aws.amazon.com/cli/latest/userguide/install-macos.html))
-* tsc (npm install typescript)
+* tsc (```npm install typescript```)
 * Google Chrome web browser
 
 
