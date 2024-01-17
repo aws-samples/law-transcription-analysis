@@ -17,13 +17,14 @@ You can use an AWS Cloud9 enviornment or EC2 instance (recommended: t3.large or 
 * Google Chrome web browser
 
 
-If you have not already, configure the aws cli to interact with AWS services using ```aws configure ```.
-To deploy using this approach, you must first set a few values inside the package.json file in the app folder.
+If you have not already, configure the aws cli to interact with AWS services using ```aws configure```.
 
-* Set your AWS deployment region in the stack->region property, replacing "%%REGION%%". 
+### To deploy using this approach, you must first set a few values inside the ```package.json``` file in the app folder:
 
- **Note** LTA is supported in AWS Regions where Amazon Transcribe and Amazon Comprehend are available. For more information, check out the [AWS Region Table](https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/)
+* Set your AWS deployment region in the stack->region property, replacing "%%REGION%%".
 * Enter your email into the email property, replacing "%%USER_EMAIL%%"
+
+ **Note:** LTA is supported in AWS Regions where Amazon Transcribe and Amazon Comprehend are available. For more information, check out the [AWS Region Table](https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/)
 
 
 Now switch to the app directory, and use yarn to deploy the solution:
